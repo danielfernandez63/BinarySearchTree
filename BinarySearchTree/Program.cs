@@ -10,6 +10,21 @@ namespace BinarySearchTree
     {
         static void Main(string[] args)
         {
+            BinaryTree classmatesAge = new BinaryTree();
+
+            classmatesAge.AddData(28);
+            classmatesAge.AddData(25);
+            classmatesAge.AddData(22);
+            classmatesAge.AddData(21);
+            classmatesAge.AddData(27);
+            classmatesAge.AddData(24);
+            classmatesAge.AddData(28);
+            classmatesAge.AddData(19);
+
+            classmatesAge.Display();
+
+            Console.ReadLine();
+
         }
     }
 }
