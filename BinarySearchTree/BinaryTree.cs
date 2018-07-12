@@ -8,17 +8,9 @@ namespace BinarySearchTree
 {
      class BinaryTree
     {
-        Node node;
-        private Node root;
-        private int count; 
 
-        public int Count
-        {
-            get
-            {
-                return count;
-            }
-        }   
+        private Node root;
+
 
         public bool IsEmpty
         {
@@ -31,163 +23,79 @@ namespace BinarySearchTree
 
         public BinaryTree()
         {
-            root = null;
-            count = 0;
+           root = null;
         }
 
 
         public void AddData(int data)
         {
+            bool check = false;
+            Node current = root;
+
+
             if (IsEmpty)
             {
                 root = new Node(data);
+                check = true;
             }
 
-            else
+            while (check == false)
             {
-
-                if (node.number < data)
+                if (current.rightChild == null && current.number < data)
                 {
-                    if (node.rightChild == null)
-                    {
-                        node.rightChild = new Node(data);
-                    }
-                    else
-                    {
-                        node.rightChild.AddData(data);
-                    }
+                    current.rightChild = new Node(data);
+                    check = true;
                 }
 
-                else if (node.number > data)
+                else if (current.leftChild == null && current.number > data)
                 {
-                    if (node.leftChild == null)
-                    {
-                        node.leftChild = new Node(data);
-                    }
-                    else
-                    {
-                        node.leftChild.AddData(data);
-                    }
+                    current.leftChild = new Node(data);
+                    check = true;
                 }
-      
+                else if (current.rightChild != null && current.number < data)
+                {
+                    current = current.rightChild;
+                }
+                else if (current.leftChild != null && current.number > data)
+                {
+                    current = current.leftChild;
+                }
            }
-
-            count++;
         }
-
-
-
-
-
-
-        public bool Search(int s)
+  
+        public void Search(int value)
         {
-            //return root.Search(toSearch);
-
-            if (node.number == s)
+            Node current = root;
+            bool found = false;
+            string foundPath = "Your current number, " + value + ", in the tree. To get to number we had to make the following moves:";
+            while (found == false)
             {
-                return true;
-            }
-
-            else if (node.number < s)
-            {
-                if (node.rightChild == null)
+                if (current.number == value)
                 {
-                    return false;
+                    found = true;
                 }
-                return node.rightChild.Search(s);
-            }
-
-            else if (node.number > s)
-            {
-                if (node.leftChild == null)
+                else if (current.rightChild != null && current.number < value)
                 {
-                    return false;
+                    current = current.rightChild;
+                    foundPath += " Moved down Right,";
                 }
-                return node.leftChild.Search(s);
+                else if (current.leftChild != null && current.number > value)
+                {
+                    current = current.leftChild;
+                    Console.WriteLine(" Moved down left,");
+                }
+                else
+                {
+                    return;
+                }
             }
 
-            return false;
-
+             if (found == true)
+             {
+                foundPath += ".";
+                Console.WriteLine(foundPath);
+                Console.ReadLine();
+             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //public void Display() //override to string to string function return representation
-            //{
-            //    if (!IsEmpty)
-            //    {
-            //        root.Display(root);
-            //    }
-            //}
-
-
-
-
-
-
-
-
-
-
-            //public override string ToString()
-            //{
-            //    string result = string.Empty;
-
-            //    if (!IsEmpty)
-            //    {
-            //        result = root.ToString();
-            //    }
-
-            //    return result;
-            //}
-
-
-
-
-
-
-            //belongs in the node class
-
-            //public bool isChild()
-            //{
-            //    if (!isEmpty())
-            //    {
-            //        return root.isChild(ref root);
-            //    }
-
-            //  return true;
-            //}
-
-
-
-
-        }
-
-
-
-
-
+     }
 }

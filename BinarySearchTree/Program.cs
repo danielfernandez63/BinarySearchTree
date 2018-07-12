@@ -18,13 +18,12 @@ namespace BinarySearchTree
             classmatesAge.AddData(21);
             classmatesAge.AddData(27);
             classmatesAge.AddData(24);
-            classmatesAge.AddData(28);
+            classmatesAge.AddData(99);
             classmatesAge.AddData(19);
 
-            classmatesAge.Display();
+            classmatesAge.Search(19);
 
-            Console.ReadLine();
-
+         
         }
     }
 }
